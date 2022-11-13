@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import "package:flutter/material.dart";
-import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:http/http.dart" as http;
 
+import "package:movie_app/env.dart";
 import "package:movie_app/helpers/helpers.dart";
 import "package:movie_app/models/models.dart";
 
@@ -33,11 +33,8 @@ class MoviesProvider extends ChangeNotifier {
   Stream<List<Movie>?> get suggestions => _streamController.stream;
 
   Future<String> _getJson(String endpoint, {int? page = 1}) async {
-    final url = Uri.https(_baseUrl, endpoint, {
-      "api_key": dotenv.env["TMDB_KEY"]!,
-      "language": _language,
-      "page": "$page"
-    });
+    final url = Uri.https(_baseUrl, endpoint,
+        {"api_key": Env.tmdbKey, "language": _language, "page": "$page"});
 
     final response = await http.get(url);
 
@@ -84,11 +81,8 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   Future<List<Movie>> searchMovies(String query) async {
-    final url = Uri.https(_baseUrl, "3/search/movie", {
-      "api_key": dotenv.env["TMDB_KEY"]!,
-      "language": _language,
-      "query": query
-    });
+    final url = Uri.https(_baseUrl, "3/search/movie",
+        {"api_key": Env.tmdbKey, "language": _language, "query": query});
 
     final response = await http.get(url);
     final data = MovieResponse.fromJson(response.body);

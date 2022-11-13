@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:provider/provider.dart";
 import "package:bitsdojo_window/bitsdojo_window.dart";
 
@@ -8,8 +7,7 @@ import "package:movie_app/providers/providers.dart";
 import "package:movie_app/screens/screens.dart";
 import "package:movie_app/widgets/widgets.dart";
 
-void main() async {
-  await dotenv.load(fileName: ".env");
+void main() {
   runApp(const AppState());
 
   if (kIsDesktop) {

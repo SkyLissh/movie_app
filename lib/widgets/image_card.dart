@@ -5,7 +5,7 @@ import "package:movie_app/constants/constants.dart";
 class ImageCard extends StatelessWidget {
   final String? text;
   final String? url;
-  final Color? color;
+  final Color color;
   final Widget icon;
   final double height;
   final double width;
@@ -16,7 +16,7 @@ class ImageCard extends StatelessWidget {
     Key? key,
     this.text,
     this.url,
-    this.color,
+    this.color = kComponentColor,
     this.icon = const Icon(Icons.image, size: 42, color: Colors.grey),
     this.height = 190,
     this.width = 130,

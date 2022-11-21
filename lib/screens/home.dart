@@ -13,6 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final playing = Provider.of<MoviesProvider>(context).playing;
     final popular = Provider.of<MoviesProvider>(context).popular;
+    // final popular = [];
 
     final getPopulars = Provider.of<MoviesProvider>(context).getPopulars;
 
@@ -42,7 +43,12 @@ class Home extends StatelessWidget {
                   itemCount: popular.isEmpty ? 10 : popular.length,
                   onSlide: getPopulars,
                   itemBuilder: (_, idx) {
-                    if (popular.isEmpty) return const ImageCard(empty: true);
+                    if (popular.isEmpty) {
+                      return const ImageCard(
+                        empty: true,
+                        margin: EdgeInsets.symmetric(horizontal: 10.0),
+                      );
+                    }
 
                     final movie = popular[idx];
                     final url = movie.posterPath != null
